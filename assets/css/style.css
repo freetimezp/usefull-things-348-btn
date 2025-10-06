@@ -9,3 +9,62 @@
 a {
     text-decoration: none;
 }
+
+body {
+    background: #141414;
+}
+
+.btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 80px;
+    line-height: 80px;
+    background: #141414;
+    text-transform: uppercase;
+    text-align: center;
+    color: #ff0;
+    font-size: 28px;
+    letter-spacing: 4px;
+}
+
+.btn::before,
+.btn::after,
+.btn span::before,
+.btn span::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff0;
+    transition: 1s;
+    mix-blend-mode: hue;
+}
+
+.btn::before {
+    top: -2px;
+    left: -2px;
+}
+.btn::after {
+    top: -2px;
+    right: -2px;
+}
+
+.btn span::before {
+    bottom: -2px;
+    left: -2px;
+}
+.btn span::after {
+    bottom: -2px;
+    right: -2px;
+}
+
+.btn:hover::before,
+.btn:hover::after,
+.btn:hover span::before,
+.btn:hover span::after {
+    width: calc(240px / 2);
+    height: calc(80px / 2);
+}
