@@ -10,10 +10,8 @@ export function initUpgradeShader(clickX = 0.5, clickY = 0.5) {
     const canvas = document.getElementById("webgl");
 
     if (initialized) {
-        // just update click position
         material.uniforms.uMouse.value.set(clickX, clickY);
 
-        // trigger animation
         gsap.to(material.uniforms.uProgress, {
             value: 1.2,
             duration: 1.2,
@@ -90,9 +88,7 @@ export function initUpgradeShader(clickX = 0.5, clickY = 0.5) {
     const mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
 
-    // 🔑 render ONE frame immediately (prevents flash)
     renderer.render(scene, camera);
-
     animate();
 
     window.addEventListener("resize", () => {
@@ -113,7 +109,6 @@ function animate() {
 
     material.uniforms.uTime.value += 0.02;
 
-    // smooth mouse follow
     mouse.lerp(targetMouse, 0.08);
     material.uniforms.uMouse.value = mouse;
 

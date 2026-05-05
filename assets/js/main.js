@@ -1,8 +1,8 @@
 import { initUpgradeShader } from "./upgradeShader.js";
+
 initUpgradeShader();
 
 const upgradeBtn = document.querySelector(".theme-upgrade");
-
 const btn = document.querySelector(".btn");
 const splash = document.querySelector(".splash");
 const body = document.body;
@@ -22,7 +22,6 @@ btn.addEventListener("click", (e) => {
 toggle.addEventListener("click", () => {
     body.classList.toggle("spring");
 
-    // optional polish: small animation feedback
     body.style.transition = "0.3s";
 });
 
@@ -39,11 +38,9 @@ upgradeBtn.addEventListener("click", (e) => {
 
     initUpgradeShader(x, y);
 
-    const tl = gsap.timeline({
-        defaults: { ease: "power3.out" },
-    });
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    // STEP 1 — enter premium mode
+    //1
     tl.to(
         {},
         {
@@ -52,7 +49,7 @@ upgradeBtn.addEventListener("click", (e) => {
         }
     );
 
-    // STEP 2 — cards reveal
+    //2
     tl.to(
         {},
         {
@@ -62,7 +59,7 @@ upgradeBtn.addEventListener("click", (e) => {
         "-=0.2"
     );
 
-    // STEP 3 — stats reveal (slightly delayed)
+    //3
     tl.to(
         {},
         {
@@ -72,7 +69,7 @@ upgradeBtn.addEventListener("click", (e) => {
         "+=0.2"
     );
 
-    // STEP 4 — exit upgrading state
+    //4
     tl.to(
         {},
         {
@@ -99,6 +96,8 @@ document.querySelectorAll(".card").forEach((card) => {
 window.addEventListener("mousemove", (e) => {
     if (!body.classList.contains("premium")) return;
 
+    body.appendChild(glow);
+
     glow.style.left = e.clientX + "px";
     glow.style.top = e.clientY + "px";
 });
@@ -110,6 +109,7 @@ logo.addEventListener("click", () => {
         body.animate([{ transform: "scale(1)" }, { transform: "scale(1.1)" }, { transform: "scale(1)" }], {
             duration: 300,
         });
+
         return;
     }
 
